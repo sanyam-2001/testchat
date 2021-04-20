@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Join Page</title>
+    <style>
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box mx-auto p-3 border rounded">
+        <h1 class="my-3">Join the Chatroom</h1>
+        <input type="text" placeholder="Username" id="username" class="form-control my-3">
+        <button class="btn btn-primary w-25 my-3" id="btn">Join</button>
+    </div>
+
+    <script>
+        document.getElementById('btn').addEventListener('click', () => {
+            const username = document.getElementById('username').value;
+            if (username === "") {
+                alert('Username Cannot be Empty!')
+            }
+            else {
+                window.open('./chat.html?username=' + username, "_self")
+            }
+        })
+    </script>
+</body>
+
+</html>
