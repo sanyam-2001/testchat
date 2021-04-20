@@ -22,7 +22,8 @@ document.getElementById('msgBtn').addEventListener('click', () => {
     </div>`
     server.emit('message', JSON.stringify({ user: urlParams.get('username'), text: text }))
     document.getElementById('msg-container').innerHTML += htm
-    document.getElementById('msg-container').scrollTop = document.getElementById('msg-container').scrollHeight
+    document.getElementById('msg-container').scrollTop = document.getElementById('msg-container').scrollHeight;
+    document.getElementById('val').value = ""
 
 
 
