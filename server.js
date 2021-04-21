@@ -5,7 +5,10 @@ const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
+const io = socketio(server, {
+    pingInterval: 15000,
+    pingTimeout: 15000
+});
 
 app.use(express.static(path.join(__dirname, "Public")))
 io.on('connection', (socket) => {

@@ -43,6 +43,32 @@ document.getElementById('messageBtn').addEventListener('click', () => {
     val.classList.add('valid');
     if (val.value === "") {
         val.classList.add('invalid');
+        const e = document.getElementById('sendimg')
+        if (e.files.length !== 0) {
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                console.log(reader.result)
+                const htm =
+                    `
+                    <div style="display: flex; justify-content:flex-end">
+                <div class="message">
+                    <div class="username">
+                        ${Pusername}
+                    </div>
+                    <hr>
+                    <img src="${reader.result}" style="width:100%">
+                </div>
+            </div>
+    
+                    `
+                socket.emit('sendImg', { type: "img", username: Pusername, room: Proom, src: reader.result });
+                updateLocalStorage(htm);
+                document.querySelector('.message-box').innerHTML += htm;
+                document.getElementById("sendimg").value = "";
+
+            }
+            reader.readAsDataURL(e.files[0]);
+        }
     }
     else {
         socket.emit('sendMessage', { type: 'text', username: Pusername, timestamp: Date.now(), txt: val.value, room: Proom });
@@ -127,30 +153,30 @@ socket.on('message', (message) => {
 })
 
 
-document.getElementById('sendimg').addEventListener('change', (e) => {
-    if (e.target.files.length !== 0) {
-        var reader = new FileReader();
-        reader.onloadend = function () {
-            console.log(reader.result)
-            const htm =
-                `
-                <div style="display: flex; justify-content:flex-end">
-            <div class="message">
-                <div class="username">
-                    ${Pusername}
-                </div>
-                <hr>
-                <img src="${reader.result}" style="width:100%">
-            </div>
-        </div>
+// document.getElementById('sendimg').addEventListener('change', (e) => {
+//     if (e.target.files.length !== 0) {
+//         var reader = new FileReader();
+//         reader.onloadend = function () {
+//             console.log(reader.result)
+//             const htm =
+//                 `
+//                 <div style="display: flex; justify-content:flex-end">
+//             <div class="message">
+//                 <div class="username">
+//                     ${Pusername}
+//                 </div>
+//                 <hr>
+//                 <img src="${reader.result}" style="width:100%">
+//             </div>
+//         </div>
 
-                `
-            socket.emit('sendImg', { type: "img", username: Pusername, room: Proom, src: reader.result });
-            updateLocalStorage(htm);
-            document.querySelector('.message-box').innerHTML += htm;
-            document.getElementById("sendimg").value = "";
+//                 `
+//             socket.emit('sendImg', { type: "img", username: Pusername, room: Proom, src: reader.result });
+//             updateLocalStorage(htm);
+//             document.querySelector('.message-box').innerHTML += htm;
+//             document.getElementById("sendimg").value = "";
 
-        }
-        reader.readAsDataURL(e.target.files[0]);
-    }
-})
+//         }
+//         reader.readAsDataURL(e.target.files[0]);
+//     }
+// })
