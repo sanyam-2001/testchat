@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../Utils/materialize.css">
+    <link rel="stylesheet" href="./chat.css">
+    <title>Chat</title>
+</head>
+
+<body>
+    <header> <i class="material-icons small" style="margin-right: 5%;">chat</i>CHATROOM</header>
+    <p id="roomname"></p>
+    <div class="message-box">
+
+
+
+    </div>
+
+    <div class="input-box">
+        <div class="inp">
+            <input type="text" id="value">
+        </div>
+        <div class="button">
+            <button class="btn waves-effect waves-light" type="submit" id="messageBtn">Send<i
+                    class="material-icons right">send</i></button>
+
+        </div>
+
+    </div>
+    <div style="width: 90%; margin: auto;">
+        <input type="file" accept=".gif,.jpg,.jpeg,.png" class="btn" id="sendimg" style="width: 100%;">
+    </div>
+
+
+    <script src="../Utils/materialize.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./chat.js"></script>
+</body>
+
+</html>

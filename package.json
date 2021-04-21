@@ -1,15 +1,14 @@
 {
-  "name": "chatapp",
+  "name": "chatapptest",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "ChatApp",
+  "main": "server.js",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index"
+    "start": "node server",
+    "dev": "nodemon server"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "S",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^4.0.1"

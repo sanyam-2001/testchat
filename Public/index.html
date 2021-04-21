@@ -5,34 +5,87 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Join Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./Utils/materialize.css">
+    <title>Home</title>
     <style>
-        .box {
+        * {
+            font-family: 'Roboto Condensed', sans-serif;
+            letter-spacing: 2px
+        }
+
+        header {
+            margin: 2%;
+            font-size: 40px;
+            text-align: center;
+            font-family: 'Antonio', sans-serif;
+        }
+
+        .main {
+            width: 70%;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 60%;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: whitesmoke;
+            padding: 20px
+        }
+
+        .input-field {
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 
 <body>
-    <div class="box mx-auto p-3 border rounded">
-        <h1 class="my-3">Join the Chatroom</h1>
-        <input type="text" placeholder="Username" id="username" class="form-control my-3">
-        <button class="btn btn-primary w-25 my-3" id="btn">Join</button>
+    <header> <i class="material-icons small" style="margin-right: 5%;">chat</i>CHATROOM</header>
+    <div style="margin-left: 10%; margin-top:5%">
+        An Open Chatroom for All
+        <br>
+        Unmonitored, Privacy-Oriented
+    </div>
+    <div class="main">
+        <div style="text-align:center;"><i class="material-icons small">person</i></div>
+        <div class="input-field col s6">
+            <input id="username" type="text" class="validate">
+            <label for="username">Username</label>
+        </div>
+        <div class="input-field col s6">
+            <input id="room" type="text" class="validate">
+            <label for="room">Room ID</label>
+        </div>
+        <div class="button">
+            <button class="btn waves-effect waves-light" type="submit" id="submit">Join<i
+                    class="material-icons right">send</i></button>
+        </div>
     </div>
 
+    <script src="./Utils/materialize.min.js"></script>
     <script>
-        document.getElementById('btn').addEventListener('click', () => {
-            const username = document.getElementById('username').value;
-            if (username === "") {
-                alert('Username Cannot be Empty!')
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Enter") {
+                document.getElementById('submit').click()
             }
-            else {
-                window.open('./chat.html?username=' + username, "_self")
+        })
+        document.getElementById('submit').addEventListener('click', () => {
+            const room = document.getElementById('room');
+            const username = document.getElementById('username');
+            room.classList.remove('invalid')
+            username.classList.remove('invalid')
+
+            if (room.value === "") {
+                room.classList.add('invalid');
+            }
+            if (username.value === "") {
+                username.classList.add('invalid');
+            }
+            if (username.value !== "" && room.value !== "") {
+                window.open(`./Chat/chat.html?username=${username.value}&room=${room.value}`, "_self");
             }
         })
     </script>
